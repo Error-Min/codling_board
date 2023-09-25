@@ -1,0 +1,13 @@
+/* CSS들을 한곳에 모아서 사용하는 main.css파일이다
+@import만을 담당하는 파일 */
+
+/*==========================================*/
+
+
+/* 페이지 Header css import */
+/* @import url("./css/mq_header.css"); */
+
+@import url("./css/mq_header.css");
+
+
+

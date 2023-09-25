@@ -1,0 +1,265 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    color: black;
+}
+
+
+
+.information_body{
+    width: 1000px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.informations{
+    width: 400px;
+    height: 60px;
+    border-bottom: 1px solid #dbdbdb;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.informations_from_name{
+    width: 150px;
+    height: 60px;
+    display: inline-block;
+}
+
+.informations_from_name p{
+    text-align: center;
+    padding: 5px;
+}
+
+.informations_from{
+    width: 250px;
+    height: 60px;
+    float: right;
+}
+
+.informations_from p{
+    padding: 5px;
+    margin-left: 20px;
+}
+
+.information_title{
+    width: 1000px;
+    height: 40px;
+    margin-top: 50px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.informations_title_name{
+    width: 150px;
+    height: 40px;
+    display: inline-block;
+}
+
+.informations_title_name p{
+    margin: 12px 0px 0px 0px;
+    text-align: center;
+}
+
+.informations_from_title{
+    width: 850px;
+    height: 40px;
+    float: right;
+}
+
+.informations_from_title p{
+    margin: 12px 0px 0px 0px;
+    margin-left: 20px;
+}
+
+.information_download_body{
+    width: 1000px;
+    height: 70px;
+    margin : 0 auto;
+    margin-bottom: 50px;
+}
+
+.content_body{
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 1px;
+    display: block;
+}
+
+.content-box{
+    width: 980px;
+    height: 500px;
+    border: 1px solid #dbdbdb;
+    background-color: #f8f5f5;
+    display: block;
+
+}
+
+.comment_write{
+    width: 1000px;
+    height: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+
+.save_box{
+    width: 400px;
+    height: 60px;
+
+    display: block;
+}
+
+.input_box{
+    width: 290px;
+    height: 60px;
+    float:left;
+    margin-left: 10px;
+    display: block;
+}
+.name_box p{
+    width: 90px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0px;
+}
+
+.input_box input{
+    width: 280px;
+    height: 25px;
+    margin-top: 13px;
+    border: 1px solid #dbdbdb;
+}
+
+.comment_box{
+    width: 1000px;
+    height: auto;
+    margin-top: 10px;
+    display: block;
+
+}
+
+.comment_box textarea{
+    width: 1000px;
+    height: 150px;
+
+    border: 1px solid #dbdbdb;
+}
+
+.input_comment_button{
+    padding: 6px 25px;
+    background-color:#543900;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    float: right;
+    margin-right: 22px;
+}
+
+.comment_list_body{
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+
+
+.comment {
+    width: 1000px;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.comment_top_body{
+    width: 1000px;
+    height: 25px;
+    display: block;
+    background-color: #f8f5f5;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.comment-author{
+    width: auto;
+    font-size: 15px;
+    margin-left: 15px;
+    float: left;
+    margin-top: 5px;
+}
+
+.comment-time{
+    width: auto;
+    font-size: 13px;
+    margin-left: 15px;
+    margin-top: 6px;
+}
+
+.comment-actions{
+    float: right;
+    display: block;
+}
+
+.input_delete_buttons{
+    padding: 6px 10px 6px 25px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    float: right;
+}
+
+.comment-contents{
+    display: block;
+    width: 980px;
+    height: 55px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+}
+
+.comment-author,
+.comment-contents,
+.comment-time,
+.comment-actions {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.comment-actions button {
+    margin-right: 1px;
+}
+
+.Edit_body{
+    width: 1000px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 50px;
+
+}
+
+.input_edit_button{
+    padding: 6px 25px;
+    background-color:#543900;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    float: left;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.input_delete_button{
+    padding: 6px 25px;
+    background-color:#543900;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    float: left;
+    margin-right: 10px;
+    font-size: 12px;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/save.css}">
+  <title>update</title>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <h1 class="logo">
+      설계장
+    </h1>
+    <a href="#" class="menu_btn">
+      <div></div>
+      <div></div>
+      <div></div>
+    </a>
+    <nav class="nav">
+      <ul class="gnb">
+        <li><a th:href="@{/}">HOME</a>
+          <ul class="sub">
+
+          </ul>
+        </li>
+        <li><a href="#">SERVICE</a>
+          <ul class="sub">
+            <li><a th:href="@{/board/paging}">디자인 센터</a></li>
+            <li><a href="#">공지사항</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="hd_bg"></div>
+</header>
+
+<div class="title_box">
+  <div class="title_name">
+    <h1>디자인 신청서</h1>
+  </div>
+</div>
+
+
+
+<form action="/board/update" method="post" name="updateForm" class="save_all_box" enctype="multipart/form-data">
+  <input type="hidden" name="id" th:value="${boardUpdate.id}">
+  <div class="save_box">
+    <div class="name_box">
+      <p>신청서 제목</p>
+    </div>
+    <div class="input_box">
+      <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
+    </div>
+  </div>
+  <div class="save_box">
+    <div class="name_box">
+      <p>성함 및 회사</p>
+    </div>
+    <div class="input_box">
+      <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
+    </div>
+  </div>
+  <div class="save_box">
+    <div class="name_box">
+      <p>비밀번호</p>
+    </div>
+    <div class="input_box">
+      <input type="password" name="boardPass" id="boardPass"> <br>
+    </div>
+  </div>
+
+  <div class="text_save_box">
+    <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
+  </div>
+
+  <div class="save_button">
+    <label class="input_save_button" for="input_save">글수정</label>
+    <input id="input_save" type="button" style="display: none;" onclick="boardUpdate()">
+  </div>
+
+</form>
+<script th:inline="javascript">
+  const boardUpdate = () => {
+    const pass = [[${boardUpdate.boardPass}]];
+    const inputPass = document.getElementById("boardPass").value;
+    if (pass == inputPass) {
+      document.updateForm.submit();
+    } else {
+      alert("비밀번호가 일치하지 않습니다!");
+    }
+  }
+</script>
+</body>

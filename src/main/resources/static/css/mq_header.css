@@ -1,0 +1,370 @@
+/*== 화면 전체 설정 ==*/
+html,
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: white; /* (선택) 화면 전체 컬러 설정 */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    width: calc(100% - 40px);
+    margin: 0 auto;
+}
+
+
+
+/* 체크 */
+.back_img {
+    height: 600px;
+    background: url('../../../imges/pages/page1.jpeg') no-repeat center center;
+    background-size: cover;
+    margin-top: -100px;  /* 예시: 데스크톱 헤더의 높이만큼 마진을 조절하세요 */
+}
+
+
+
+
+/*== Header 스타일 ==*/
+#header{
+    background: #543900; /* 헤더 기본 배경색 */
+}
+
+#header .container {
+    display: flex; /* 수평구조 */
+    justify-content: space-between; /* 가로축 : 요소들 사이 동일한 간격 */
+    align-items: center;            /* 세로축 : 가운데 정렬 */
+}
+
+/*== 로고 스타일 ==*/
+#header .logo {
+    font-size: 25px;  /* 헤더 로고 기본 폰트 사이즈 */
+    font-weight: 600; /* 헤더 로고 기본 굵기 */
+    box-sizing: border-box; /* 헤더 테두리를 기준으로 크기를 정한다. */
+}
+
+#header .nav .logo { /* 체크 */
+    display: flex;
+    width: 200px;
+    flex-wrap: wrap;
+    justify-content: center; /* 가로축 : 요소들 사이 동일한 간격 */
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/*== 메인 및 서브 메뉴 스타일 ==*/
+#header .gnb {
+    display: flex;           /* 수평 구조 */
+    justify-content: center; /* 가로축 : 요소들 사이 동일한 간격 */
+    text-align: center;      /* 텍스트 가운데 정렬 */
+}
+
+.gnb > li {
+    /* transition 시간의 흐름을 변화 시키는 속성 */
+    transition: margin 0.3s;
+}
+
+.gnb > li > a:hover {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/*== 모바일 사이즈 메뉴 햄버거 버튼 ==*/
+#header .menu_btn {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/*  */
+#header .menu_btn div {
+    width: 25px;
+    height: 2px;
+    background-color: #000;
+    margin: 6px 0px;
+    position: relative;
+    transition: all .8s ease;
+}
+
+#header .menu_btn.lijo div {
+    position: absolute;
+    transition: all .8s ease;
+}
+
+#header .menu_btn.lijo div:nth-child(1) {
+    transform: rotate(45deg);
+    top: 7px;
+    right: 0px;
+}
+
+#header .menu_btn.lijo div:nth-child(2) {
+    width: 0px;
+    top: 7px;
+    right: 0px;
+}
+
+#header .menu_btn.lijo div:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 7px;
+    right: 0px;
+}
+
+/* GNB 스타일 */
+#header .nav ul.gnb {
+    margin-bottom: 0px;
+    padding-left: 0px;
+    display: flex;
+    transform: none;
+    margin-top: 0px;
+}
+
+#header .nav ul.gnb li {
+    margin-bottom: 0px;
+    color: #000;
+    text-align: center;
+    position: relative;
+}
+
+#header .nav ul.gnb li a {
+    box-sizing: border-box;
+    display: block;
+    transition: .8s ease;
+    text-transform: uppercase;
+}
+
+#header .nav ul.gnb>li>a {
+    padding: 30px 40px;
+}
+
+/* 서브메뉴 스타일 */
+#header .nav ul.gnb li ul.sub {
+    position: absolute;
+    padding-left: 0px;
+    opacity: 0;
+    visibility: hidden;
+    padding-top: 0px;
+    z-index: 3;
+    width: 100%;
+
+}
+
+#header .nav ul.gnb li ul.sub li {
+    display: block;
+    position: relative;
+}
+
+#header .nav ul.gnb li ul.sub li a {
+    padding: 10px;
+}
+
+
+
+
+/*== 모바일 스타일 ==*/
+@media(max-width:1024px) {
+    #header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 20px 0;
+    }
+
+    body{
+        background-color: #000;
+    }
+
+    #header .menu_btn {
+        display: block;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #header .menu_btn.lijo {
+        top: 30%;
+    }
+
+    #header .nav ul.gnb {
+        position: absolute;          /* 절대 위치 설정 */
+        top: 65px;                   /* 상단에서 65px의 위치에 메뉴를 배치 */
+        transform: translateX(100%); /* 메뉴를 오른쪽으로 밀어 숨김 (기본 설정) */
+        left: 0;                     /* 왼쪽에서부터 시작 */
+        transition: .8s ease;        /* 0.8초 동안의 부드러운 애니메이션 (이전에 설정되었던 것으로 보임) */
+        width: 100%;                 /* 메뉴의 너비를 부모 요소의 100%로 설정 */
+        height: calc(100vh - 65px);  /* 화면 높이에서 65px을 뺀 만큼의 높이로 설정 */
+        background: #fff;            /* 배경색 설정 */
+        overflow-y: auto;            /* 세로 스크롤 가능 (내용이 많을 경우 스크롤바 표시) */
+        display: block;              /* 메뉴를 블록 요소로 표시 */
+        transform: translateX(100%); /* 모바일에서 기본적으로 메뉴를 오른쪽으로 밀어 숨김 */
+        transition: transform 0.0s;  /* 메뉴 이동시 애니메이션 없이 즉시 이동 */
+    }
+
+    #header .nav ul.gnb li a {
+        text-align: left;
+    }
+
+    #header .nav ul.gnb>li>a {
+        padding: 10px 20px;
+    }
+
+    #header .nav ul.gnb.surya {
+        transform: translateX(0%);
+    }
+
+    #header .nav ul.gnb li ul.sub {
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        position: relative;
+        padding-top: 0px;
+        width: 100%;
+        transition: 0s;
+        transform: translateY(0px);
+        padding: 0px 20px;
+    }
+
+    #header .nav ul.gnb li ul.sub:after {
+        display: none;
+
+    }
+
+    .hd_bg {
+        display: none !important;
+    }
+}
+
+
+
+
+
+
+
+
+/*== 데스크톱 스타일 ==*/
+@media(min-width:1024px) {
+    #header {
+        margin: 0;
+        height: 100px; /* 이 부분을 추가합니다 */
+
+    }
+
+    #header:hover {
+        background-color: white;
+        transition: background-color 1.0s ease; /* 선택적: 부드러운 전환 효과 */
+        position: relative; /* ensures the ::before element is positioned relative to the header */
+    }
+
+    .back_img {
+        height: 800px;
+        background-size: cover;
+        margin-top: -100px;  /* 예시: 데스크톱 헤더의 높이만큼 마진을 조절하세요 */
+
+    }
+
+    #header .container {
+        display: flex;
+        height: 100px;
+        justify-content: space-between;
+
+    }
+
+    #header .nav ul.gnb {
+        transform: none; /* 데스크톱에서는 메뉴를 항상 보이게 합니다. */
+
+    }
+
+    .gnb li{
+        list-style-type: none;
+    }
+
+    #header .nav ul.gnb:hover li ul.sub {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+
+
+    #header .nav ul.gnb li:hover {
+        display: inline-block;
+        margin-bottom: 0px;
+    }
+
+    #header.open .hd_bg {
+        position: absolute;
+        width: 100%;
+        background: #fff;
+        /*border-top: 1px solid #dcdcdc;*/
+    }
+
+    #header .nav ul.gnb li ul.sub li a {
+        text-align: center;
+    }
+
+    #header .nav .active {
+        position: relative;
+    }
+
+    #header .nav .active:hover:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #000;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+
+    #header .nav ul.gnb li ul.sub {
+        display: block;
+        top: 60px; /*메인메뉴와 서브메뉴의 이놈이거 준ㅐ */
+    }
+
+
+    .gnb > li > a {
+        color: white;
+        transition: color 0.3s ease;
+    }
+
+    .gnb > li:hover > a,
+    .gnb > li:hover .sub > li > a {
+        color: black;
+    }
+
+    .logo {
+        transition: margin-left 5.0s; /* 0.3초 동안 왼쪽 마진을 변경합니다. */
+        margin-left: 0; /* 기본 마진은 0입니다. */
+        color: white;
+        transition: color 1.0s ease;
+    }
+
+    .gnb > li:hover ~ .logo {
+        color: black;
+    }
+
+    #header:hover .logo,
+    #header:hover .gnb > li > a {
+        color: black; /* !important를 사용하여 다른 스타일을 오버라이드합니다. */
+        transition: margin-left 1.0s; /* 1초 동안 왼쪽 마진을 변경합니다. */
+        margin-left: 10px; /* 마우스를 올렸을 때 10픽셀 오른쪽으로 이동합니다. */
+        font-size: 20px;
+    }
+
+    #header:hover .logo{
+        font-size: 40px;
+        font-weight: 600;
+    }
+}

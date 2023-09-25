@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}">
+    <title>detail</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .content-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        #comment-write input {
+            margin-right: 10px;
+            padding: 5px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header id="header">
+    <div class="container">
+        <h1 class="logo">
+            설계장
+        </h1>
+        <a href="#" class="menu_btn">
+            <div></div>
+            <div></div>
+            <div></div>
+        </a>
+        <nav class="nav">
+            <ul class="gnb">
+                <li><a th:href="@{/}">HOME</a>
+                    <ul class="sub">
+
+                    </ul>
+                </li>
+                <li><a href="#">SERVICE</a>
+                    <ul class="sub">
+                        <li><a th:href="@{/board/paging}">디자인 센터</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="hd_bg"></div>
+</header>
+
+<div class="information_body">
+    <div class="informations">
+        <div class="informations_from_name">
+            <p>신청 번호</p>
+        </div>
+        <div class="informations_from">
+            <p th:text="${board.id}"></p>
+        </div>
+    </div>
+    <div class="informations">
+        <div class="informations_from_name">
+            <p>신청인</p>
+        </div>
+        <div class="informations_from">
+            <p th:text="${board.boardWriter}"></p>
+        </div>
+    </div>
+    <div class="informations">
+        <div class="informations_from_name">
+            <p>신청 날짜</p>
+        </div>
+        <div class="informations_from">
+            <p th:text="${board.boardCreatedTime}"></p>
+        </div>
+    </div>
+
+    <div class="information_title">
+        <div class="informations_title_name">
+            <p>제목</p>
+        </div>
+        <div class="informations_from_title">
+            <p th:text="${board.boardTitle}"></p>
+        </div>
+    </div>
+</div>
+
+
+<!--
+<table>
+    <tr>
+        <th>id</th>
+        <td th:text="${board.id}"></td>
+    </tr>
+    <tr>
+        <th>title</th>
+        <td th:text="${board.boardTitle}"></td>
+    </tr>
+    <tr>
+        <th>writer</th>
+        <td th:text="${board.boardWriter}"></td>
+    </tr>
+    <tr>
+        <th>date</th>
+        <td th:text="${board.boardCreatedTime}"></td>
+    </tr>
+    <tr>
+        <th>hits</th>
+        <td th:text="${board.boardHits}"></td>
+    </tr>
+</table>
+
+-->
+
+<div class="content_body">
+    <div class="content-box" th:text="${board.boardContents}"></div>
+</div>
+
+<div class="information_download_body">
+    <div class="informations">
+        <div class="informations_from_name">
+            <p>첨부파일</p>
+        </div>
+        <div class="informations_from">
+            <p><a th:href="@{/board/download/{id}(id=${board.id})}" class="btn btn-primary">Download</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="comment-write" class="comment_write">
+
+    <div class="save_box">
+        <div class="input_box">
+            <input type="text" id="commentWriter" placeholder="회사 및 이름">
+        </div>
+    </div>
+    <div class="comment_box">
+        <textarea type="text" id="commentContents" placeholder="Contents"></textarea>
+    </div>
+    <label class="input_comment_button" for="input_comment">등록</label>
+    <button id="input_comment" onclick="commentWrite()" style="display: none;"></button>
+</div>
+
+
+<div class="comment_list_body">
+    <!-- Comment list using Thymeleaf -->
+    <div id="comment-list">
+        <div class="comment" th:each="comment : ${comments}">
+            <div class="comment_top_body">
+                <div class="comment-author" th:text="${comment.commentWriter}">코들링</div>
+
+                <div class="comment-time" th:text="${comment.commentCreatedTime}">10시10분</div>
+
+                <div class="comment-actions">
+                    <label class="input_delete_buttons" for="input_delete_button1">삭제</label>
+                    <button id="input_delete_button1" style="display: none;" th:onclick="|deleteComment(${comment.id})|"></button>
+                    <!-- <button data-comment-id="${comment.id}" th:attr="data-comment-id=${comment.id}" class="update-button">Update</button> -->
+                </div>
+            </div>
+            <div class="comment-contents" th:text="${comment.commentContents}">내용</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="Edit_body">
+    <label class="input_edit_button" for="input_edit">Edit</label>
+    <button id="input_edit" onclick="updateReq()" style="display: none;"></button>
+    <label class="input_delete_button" for="input_delete">Delete</label>
+    <button id="input_delete" onclick="deleteReq()" style="display: none;"></button>
+</div>
+
+
+
+<!-- your existing scripts -->
+<script th:inline="javascript">
+    const loadComments = () => {
+        const id = [[${board.id}]]; // post ID
+        $.ajax({
+            type: 'GET',
+            url: `/comment/findAll?boardId=${id}`, // API address to retrieve comment data
+            success: function (res) {
+                let output = '';
+                for (let i in res) {
+                    output += '<div class="comment">';
+
+                    output += '<div class="comment_top_body">';
+
+                    output += '<div class="comment-author">' + res[i].commentWriter + '</div>';
+                    output += '<div class="comment-time">' + res[i].commentCreatedTime + '</div>';
+
+                    output += '<div class="comment-actions">';
+                    output += '<label class="input_delete_buttons" for="input_delete_button' + res[i].id + '">Delete</label>';
+                    output += '<button id="input_delete_button' + res[i].id + '" style="display: none;" onclick="deleteComment(' + res[i].id + ')"></button>';
+                    output += '</div>'; // comment-actions 끝
+
+                    output += '</div>'; // comment_top_body 끝
+
+                    output += '<div class="comment-contents">' + res[i].commentContents + '</div>';
+
+                    output += '</div>'; // comment 끝
+                }
+                document.getElementById('comment-list').innerHTML = output;
+            },
+            error: function (err) {
+                console.log('댓글 로딩에 실패했습니다.', err);
+            }
+        });
+    };
+
+    const commentWrite = () => {
+        const writer = document.getElementById("commentWriter").value;
+        const contents = document.getElementById("commentContents").value;
+        const id = [[${board.id}]]; // 게시글 ID
+        $.ajax({
+            type: "post",
+            url: "/comment/save",
+            data: {
+                "commentWriter": writer,
+                "commentContents": contents,
+                "boardId": id
+            },
+            success: function (res) {
+                loadComments(); // 댓글을 다시 불러옵니다.
+            },
+            error: function (err) {
+                console.log("요청 실패", err);
+            }
+        });
+    };
+
+    const listReq = () => {
+        const page = [[${page}]];
+        location.href = "/board/paging?page=" + page;
+    };
+
+    const updateReq = () => {
+        const id = [[${board.id}]]; // 게시글 ID
+        location.href = "/board/update/" + id;
+    };
+
+    const deleteReq = () => {
+        const id = [[${board.id}]]; // 게시글 ID
+        location.href = "/board/delete/" + id;
+    };
+
+    $(document).ready(function() {
+        loadComments(); // 페이지가 로드될 때 댓글을 불러옵니다.
+    });
+
+
+
+    const deleteComment = (commentId) => {
+        $.ajax({
+            type: 'DELETE',
+            url: `/comment/delete/${commentId}`,
+            success: function (res) {
+                loadComments();
+            },
+            error: function (err) {
+                console.log('Delete Failed', err);
+            }
+        });
+    }
+
+    const updateComment = (commentId) => {
+        const newContent = prompt("Enter new comment content");
+        if (newContent) {
+            $.ajax({
+                type: 'PUT',
+                url: `/comment/update/${commentId}`,
+                data: { 'newContent': newContent },
+                success: function (res) {
+                    loadComments();
+                },
+                error: function (err) {
+                    console.log('Update Failed', err);
+                }
+            });
+        }
+    }
+
+    $(document).on('click', '.delete-button', function() {
+        const commentId = $(this).data('comment-id');
+        deleteComment(commentId);
+    });
+
+    $(document).on('click', '.update-button', function() {
+        const commentId = $(this).data('comment-id');
+        updateComment(commentId);
+    });
+
+
+</script>
+</body>
+</html>
